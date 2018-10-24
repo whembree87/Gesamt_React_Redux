@@ -1,24 +1,16 @@
-import _ from 'lodash';
-import React, {Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxPromise from 'redux-promise';
 
-class App extends Component {
-    constructor(props)  {
-        super(props);
+import App from './components/app';
+import reducers from './reducers';
 
-        // this.state = {
-        //     videos: [],
-        //     selectedVideo: null
-        // };
-        //
-        // this.videoSearch('');
-    }
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
-    render() {
-        return (
-            <div>Hello World</div>
-        );
-    }
-}
-
-ReactDOM.render(<App />, document.querySelector('.container'));
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>
+    , document.querySelector('.container'));
