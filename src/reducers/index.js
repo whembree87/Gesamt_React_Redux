@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import TranslateReducer from './reducer_translate';
 
 const rootReducer = combineReducers({
-    state: (state = {}) => state
+    translations: TranslateReducer
 });
 
 export default rootReducer;
